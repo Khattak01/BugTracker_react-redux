@@ -1,0 +1,15 @@
+.input{
+    padding: 4px;
+    outline: none;
+    border:none;
+    font-size:17px;
+    border: 2px solid transparent;
+    color: rgb(112, 76, 182);
+    background-color: rgba(112, 76, 182, 0.1);
+    transition: all ease-in-out .15s;
+}
+
+.input:focus {
+    border-color: rgba(112, 76, 182, 0.4);
+    background-color: rgba(112, 76, 182, 0.2);
+  }

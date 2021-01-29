@@ -1,0 +1,31 @@
+.bugs{
+    width: 100%;
+    max-width:40rem;
+    min-width:50vh;
+    /* border: 1px solid black; */
+    margin: auto auto;
+}
+.bugs__add-bug{
+    margin-top: 50px;
+    margin-bottom:50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bugs__add-bug-error{
+    color: #f54c53;
+    font-weight: light;
+    font-size: 18px;
+    letter-spacing: .8px;
+    transition: all .3s ease-in-out;/*not working*/
+}
+.bugs__not-bug-heading{
+    color: #44bd60;
+    font-weight: normal;
+    font-size: 24px;
+
+}
+.bugs__bug:not(:last-of-type){/*not working*/
+    /* margin-bottom: 5px; */
+}

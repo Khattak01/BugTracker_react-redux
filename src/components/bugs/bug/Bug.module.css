@@ -1,0 +1,20 @@
+.bug{
+    /* border: 1px solid black; */
+    width: 100%;
+    max-width: 30rem;
+    margin:auto auto;
+
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+.bug__description{
+    flex:.5;
+    text-align:left;
+    color: #333333;
+    font-size: 17px;
+}
+.bug__btn_box{
+    flex:.5;
+    text-align: right;
+}
