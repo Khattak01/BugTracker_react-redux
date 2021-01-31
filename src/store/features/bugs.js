@@ -7,7 +7,8 @@ const slice = createSlice({
   name: "bugs",
   initialState: {
     list: [],
-    error: ''
+    error: '',
+    loading: false
   },
   reducers: {
     bugsLoaded: (bugs, action) => {
@@ -47,6 +48,9 @@ const slice = createSlice({
     },
     errorResolved: (bugs) => {
       bugs.error = ''
+    },
+    setLoading:(bugs,action)=>{
+      bugs.loading = action.payload.loading
     }
   }
 });
@@ -56,12 +60,14 @@ export const {
   bugResolved,
   bugDeleted,
   bugAssignedToUser,
+  setLoading,
   errorOccured,
   errorResolved
 } = slice.actions;
 export default slice.reducer;
 
 export const loadBugs = () => async dispatch => {
+  dispatch(setLoading({loading:true}))
   const response = await db.collection('bugs').get()
   if (response.empty) {
     console.log('NO document exists in the db')
@@ -70,14 +76,15 @@ export const loadBugs = () => async dispatch => {
   // response.forEach( doc => console.log('doc.data() >> ',doc.data()))
   let bugList = []
   response.forEach(doc => bugList.push(doc.data()))
-  dispatch(slice.actions.bugsLoaded({ list: bugList }))
+  dispatch(slice.actions.bugsLoaded({ list: bugList}))
   // console.log(bugList)
+  dispatch(setLoading({loading:false}))
 };
 
 
 // export const uploadBugs = () => async (dispatch, getState) => { or we can write this like as we can get the bugs from our ui
-export const uploadBugs = (bugs) => async () => {// we can upload it directly from the UI as well
-
+export const uploadBugs = (bugs) => async (dispatch) => {// we can upload it directly from the UI as well
+  dispatch(setLoading({loading:true}))
   const bugsRef = db.collection("bugs")
   bugs.forEach(async bug => {
     // getState().bugs.list.forEach(async bug => {
@@ -89,6 +96,7 @@ export const uploadBugs = (bugs) => async () => {// we can upload it directly fr
     }
     //   console.log('document exists already')
   });
+  dispatch(setLoading({loading:false}))
 }
 
 // Selector
