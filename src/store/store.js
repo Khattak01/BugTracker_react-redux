@@ -4,12 +4,18 @@ import bugReducer from './features/bugs'
 
 import { combineReducers } from "redux";
 
+
+
 const reducer = combineReducers({
   // here we will be adding reducers
   counter: counterReducer,
   bugs:bugReducer
 });
 
-export default configureStore({
+const store =  configureStore({
   reducer,
 });
+
+export default store;
+
+
